@@ -11,7 +11,7 @@ terraform {
 
 provider "aws" {
   profile = "default"
-  region  = "us-west-2"
+  region  = "us-west-1"
 }
 
 resource "aws_elastic_beanstalk_application" "amor_de_4patas_beanstalk" {
@@ -21,7 +21,7 @@ resource "aws_elastic_beanstalk_application" "amor_de_4patas_beanstalk" {
 
 resource "aws_elb" "main" {
   name               = "amor-de-4patas-elb"
-  availability_zones = ["us-west-2"]
+  availability_zones = ["us-west-1"]
 
   listener {
     instance_port     = 80
@@ -34,7 +34,7 @@ resource "aws_elb" "main" {
 resource "aws_elastic_beanstalk_environment" "amor_de_4patas_beanstalk_environment" {
   name          = "amor-de-4patas-prod"
   application   = aws_elastic_beanstalk_application.amor_de_4patas_beanstalk.name
-  platform_arn  = "arn:aws:elasticbeanstalk:us-west-2::platform/Node.js 14 running on 64bit Amazon Linux 2/5.4.8"
+  platform_arn  = "arn:aws:elasticbeanstalk:us-west-1::platform/Node.js 14 running on 64bit Amazon Linux 2/5.4.8"
   
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
